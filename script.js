@@ -32,3 +32,51 @@ deckOfCards.forEach(cards => {
   main.appendChild(cards);
   cards.className = 'card';
 })
+
+let heartButton = document.querySelector('#hearts')
+heartButton.addEventListener('click', () => {
+  const heartCards = cards.filter(card => card.suit === '♥')
+
+  const heartDeck = createDeckOfCards(heartCards);
+
+  heartDeck.forEach(cards => {
+    main.replaceChildren(...heartDeck)
+    cards.className = 'card';
+  })
+})
+
+let spadeButton = document.querySelector('#spades')
+spadeButton.addEventListener('click', () => {
+  const spadeCards = cards.filter(card => card.suit === '♠')
+
+  const spadeDeck = createDeckOfCards(spadeCards);
+
+  spadeDeck.forEach(cards => {
+    main.replaceChildren(...spadeDeck)
+    cards.className = 'card';
+  })
+})
+
+let diamondButton = document.querySelector('#diamonds')
+diamondButton.addEventListener('click', () => {
+  const diamondCards = cards.filter(card => card.suit === '♦')
+
+  const diamondDeck = createDeckOfCards(diamondCards);
+
+  diamondDeck.forEach(cards => {
+    main.replaceChildren(...diamondDeck)
+    cards.className = 'card';
+  })
+})
+
+let clubButton = document.querySelector('#clubs')
+clubButton.addEventListener('click', () => {
+  const clubCards = cards.filter(card => card.suit === '♣')
+
+  const clubDeck = createDeckOfCards(clubCards);
+
+  clubDeck.forEach(cards => {
+    main.replaceChildren(...clubDeck)
+    cards.className = 'card';
+  })
+})
