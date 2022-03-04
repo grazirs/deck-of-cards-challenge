@@ -7,6 +7,7 @@ const cards = [
 let filter;
 let shuffle = false;
 const main = document.getElementsByClassName('cards')[0];
+let currentDeck = [];
 
 function createDeckOfCards(cards){
   return cards.map(card => {
@@ -21,21 +22,19 @@ function createDeckOfCards(cards){
 }
 
 function filterCards() {
-  let cardsList = filter ? cards.filter(card => card.suit === filter) : cards;
-  const filteredDeck = createDeckOfCards(cardsList);
+  currentDeck = filter ? cards.filter(card => card.suit === filter) : cards;
+  const filteredDeck = createDeckOfCards(currentDeck);
   main.replaceChildren(...filteredDeck);
 }
 
-const shuffleList = shuffleArray([...cards]);
-
 function shuffleCards() {
-  shuffle ? shuffleList : cards;
-  const shuffledDeck = createDeckOfCards(shuffleList);
-  main.replaceChildren(...shuffledDeck)
+  currentDeck = shuffle ? shuffleArray([...cards]) : cards;
+  const shuffledDeck = createDeckOfCards(currentDeck);
+  main.replaceChildren(...shuffledDeck);
 }
 
 function filterAndShuffleCards() {
-  let filterAndShuffle = filter && shuffle ? shuffleList.filter(card => card.suit === filter) : cards;
+  let filterAndShuffle = currentDeck.filter(card => card.suit === filter);
   const filterAndShuffleDeck = createDeckOfCards(filterAndShuffle);
   main.replaceChildren(...filterAndShuffleDeck);
 }
