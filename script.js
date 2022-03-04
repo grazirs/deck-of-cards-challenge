@@ -48,4 +48,10 @@ clubButton.addEventListener('click', () => {
   displayCards();
 })
 
+let resetButton = document.querySelector('#reset')
+resetButton.addEventListener('click', () => {
+  filter = null;
+  displayCards();
+})
+
 displayCards();
