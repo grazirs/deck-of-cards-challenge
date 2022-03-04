@@ -12,7 +12,7 @@ function createDeckOfCards(cards){
   return cards.map(card => {
     const el = document.createElement('div');
     el.className = 'card';
-    el.innerHTML = card.value + card.suit;
+    el.innerHTML = `${card.value} ${card.suit}`;
       if (card.suit === '♥' || card.suit === '♦'){
         el.classList.add('card--red');
       }
@@ -20,11 +20,24 @@ function createDeckOfCards(cards){
   });
 }
 
-function displayCards() {
+function filterCards() {
   let cardsList = filter ? cards.filter(card => card.suit === filter) : cards;
-  (shuffle) ? cardsList = shuffleArray([...cardsList]) : cards;
   const filteredDeck = createDeckOfCards(cardsList);
   main.replaceChildren(...filteredDeck);
+}
+
+const shuffleList = shuffleArray([...cards]);
+
+function shuffleCards() {
+  shuffle ? shuffleList : cards;
+  const shuffledDeck = createDeckOfCards(shuffleList);
+  main.replaceChildren(...shuffledDeck)
+}
+
+function filterAndShuffleCards() {
+  let filterAndShuffle = filter && shuffle ? shuffleList.filter(card => card.suit === filter) : cards;
+  const filterAndShuffleDeck = createDeckOfCards(filterAndShuffle);
+  main.replaceChildren(...filterAndShuffleDeck);
 }
 
 function shuffleArray(array) {
@@ -42,38 +55,38 @@ function shuffleArray(array) {
 let heartButton = document.querySelector('#hearts');
 heartButton.addEventListener('click', () => {
   filter = '♥';
-  displayCards();
+  shuffle ? filterAndShuffleCards() : filterCards();
 })
 
 let spadeButton = document.querySelector('#spades');
 spadeButton.addEventListener('click', () => {
   filter = '♠';
-  displayCards();
+  shuffle ? filterAndShuffleCards() : filterCards();
 })
 
 let diamondButton = document.querySelector('#diamonds');
 diamondButton.addEventListener('click', () => {
   filter = '♦';
-  displayCards();
+  shuffle ? filterAndShuffleCards() : filterCards();
 })
 
 let clubButton = document.querySelector('#clubs');
 clubButton.addEventListener('click', () => {
   filter = '♣';
-  displayCards();
+  shuffle ? filterAndShuffleCards() : filterCards();
 })
 
 let resetButton = document.querySelector('#reset');
 resetButton.addEventListener('click', () => {
   filter = null;
   shuffle = false;
-  displayCards();
+  filterCards();
 })
 
 let shuffleButton = document.querySelector('#shuffle');
 shuffleButton.addEventListener('click', () => {
   shuffle = true;
-  displayCards();
+  shuffleCards();
 })
 
-displayCards();
+filterCards();
