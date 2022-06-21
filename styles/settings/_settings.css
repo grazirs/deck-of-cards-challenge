@@ -1,0 +1,14 @@
+:root {
+  --margin-16: 16px;
+  --margin-32: 32px;
+  --padding-60: 60px;
+  --font-18: 18px;
+  --font-50: 50px;
+
+  --dark-red: #cc0000;
+  --black: #111111;
+  --white: #ffffff;
+  --font-nunito: 'Nunito', sans-serif;
+  --font-serif: 'Source Serif Pro', serif;
+}
+

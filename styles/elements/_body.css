@@ -1,0 +1,6 @@
+body {
+  /* background-color: var(--secondary-bg-color); */
+  font-size: var(--font-18);
+  font-family: var(--font-nunito);
+  background-image: url('../../img/background.jpg');
+}
